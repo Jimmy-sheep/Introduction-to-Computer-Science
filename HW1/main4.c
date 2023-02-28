@@ -4,14 +4,17 @@
 #include <stdio.h>
 
 void remove_char(char ch[], int size) {
-    int j = 0;
-    char result[20] = { 0 };
+    int reg = 0;
+    int sign = 1;
 
-    for (int i = 0; i < size; i++)
-        if ((ch[i] >= 48 && ch[i] <= 57) || ch[i] == 45) {
-            result[j++] = ch[i];
+    for (int i = 0; i < size; i++) {
+        if (ch[i] == 45)
+            sign = -1;
+        if ((ch[i] >= 48 && ch[i] <= 57)) {
+            reg = reg * 10 + ch[i] - 48;
         }
-    printf("%s\n", result);
+    }
+    printf("%d\n", sign * reg);
 }
 
 int main()

@@ -39,7 +39,6 @@ int main()
     char a[] = "10001111";
     char b[] = "10011110";
 
-
     bin2hex(a, sizeof(a) - 1);
     bin2hex(b, sizeof(b) - 1);
 
