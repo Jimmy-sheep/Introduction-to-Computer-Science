@@ -14,11 +14,11 @@ void decode(char* ch, int size, int* list) {
     int j = 0;
 
     for (int i = 0; i < size; i++) {
-        if (ch[i] == 45) {                      // ­t¼Æ
+        if (ch[i] == 45) {                      // è² æ•¸
             list[j++] = ~(ch[i + 1] - 49);
             i++;
         }
-        else if (ch[i] >= 48 && ch[i] <= 57)    // ¥¿¼Æ
+        else if (ch[i] >= 48 && ch[i] <= 57)    // æ­£æ•¸
             list[j++] = ch[i] - 48;
     }
 }
