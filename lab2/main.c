@@ -18,16 +18,16 @@ void employee_info(employee_t my_emp) {
 }
 
 int main() {
-	employee_t my_emp;
+	employee_t my_employee;
 
-	my_emp.em_id = 0;
-	strcpy(my_emp.em_name, "IU Lee");
-	my_emp.em_age = 18;
-	strcpy(my_emp.em_phone, "0937123456");
-	my_emp.em_salary = 1000.30;
+	my_employee.em_id = 0;
+	strcpy(my_employee.em_name, "IU Lee");
+	my_employee.em_age = 18;
+	strcpy(my_employee.em_phone, "0937123456");
+	my_employee.em_salary = 1000.30;
 
 	printf("%d\n", (int)sizeof(employee_t));
-	employee_info(my_emp);
+	employee_info(my_employee);
 
 	printf("\n");
 
