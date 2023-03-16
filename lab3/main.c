@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 #pragma warning(disable : 4996)
 
 typedef struct person {
@@ -17,9 +16,9 @@ int main() {
 					  {5, "IUUUUU", "LEE"},
 	};
 
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 5; i++)
 		fwrite(p + i, sizeof(person_t), 1, wfp);
-	}
+
 	fclose(wfp);
 
 	FILE* rfp = fopen("person.bin", "r");
