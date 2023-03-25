@@ -1,14 +1,16 @@
 #include <stdio.h>
+#include <string.h>
 #pragma warning(disable : 4996)
 
 int main() {
-    char text;
+    char buffer[128];
+    int line = 1;
 
     FILE* pCFile = fopen(__FILE__, "r");
     FILE* pFile = fopen("main2.txt", "w+");
 
-    while ((text = fgetc(pCFile)) != EOF) {
-        fputc(text, pFile);
+    while (fgets(buffer, sizeof(buffer), pCFile) != NULL) {
+        fprintf(pFile, "%02d %s", line++, buffer);
     }
 
     fclose(pFile);

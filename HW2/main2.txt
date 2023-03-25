@@ -1,18 +1,20 @@
-#include <stdio.h>
-#pragma warning(disable : 4996)
-
-int main() {
-    char text;
-
-    FILE* pCFile = fopen(__FILE__, "r");
-    FILE* pFile = fopen("main2.txt", "w+");
-
-    while ((text = fgetc(pCFile)) != EOF) {
-        fputc(text, pFile);
-    }
-
-    fclose(pFile);
-    fclose(pCFile);
-
-    return 0;
-}
+01 #include <stdio.h>
+02 #include <string.h>
+03 #pragma warning(disable : 4996)
+04 
+05 int main() {
+06     char buffer[128];
+07     int line = 1;
+08 
+09     FILE* pCFile = fopen(__FILE__, "r");
+10     FILE* pFile = fopen("main2.txt", "w+");
+11 
+12     while (fgets(buffer, sizeof(buffer), pCFile) != NULL) {
+13         fprintf(pFile, "%02d %s", line++, buffer);
+14     }
+15 
+16     fclose(pFile);
+17     fclose(pCFile);
+18 
+19     return 0;
+20 }
