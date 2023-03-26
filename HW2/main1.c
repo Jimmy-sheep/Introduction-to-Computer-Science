@@ -28,11 +28,8 @@ void bubble_sort(int list[], int n) {
 }
 
 void summon_lotto(int lotto[]) {
-    int num = 0;
-    int flag = 1;
-
-    srand(time(0));
     for (int i = 0; i < 7; i++) {
+        int num = 0;
         int flag = 1;
 
         if (i == 6)
@@ -56,9 +53,11 @@ int main()
 {
     int n;
     int lotto[7] = { 0 };
+    srand(time(0));
+    time_t now = time(NULL);
+
     printf("歡迎光臨長庚樂透彩購買機台\n請問您要購買幾組樂透彩：");
     scanf("%d", &n);
-    time_t now = time(NULL);
 
     FILE* pFile = fopen("lotto.txt", "w+");
 
