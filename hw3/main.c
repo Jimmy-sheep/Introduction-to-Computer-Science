@@ -64,7 +64,7 @@ void check_record(int price[], int price_n) {
     int lotto[7] = { 0 };
     lotto_record_t record;
 
-    FILE* pRecFile = fopen("record.bin", "ab+");
+    FILE* pRecFile = fopen("record.bin", "rb");
 
     if (pRecFile == NULL)
         printf("目前沒有彩券購買紀錄。\n");
@@ -105,15 +105,16 @@ void write_record(char filename[], int lotto_n, int num) {
     FILE* pRecFile = fopen("record.bin", "ab+");
     FILE* pFile = fopen(filename, "w+");
 
-    fprintf(pFile, "======== lotto649 =========\n");
+    fprintf(pFile, "========= lotto649 =========\n");
 
     new_record.receipt_id = num + 1;
-    fprintf(pFile, "=======+ No.%05d +========\n", new_record.receipt_id);
+    fprintf(pFile, "========+ No.%05d +========\n", new_record.receipt_id);
 
     new_record.receipt_price = 100 * lotto_n;
 
+    nowtime[strlen(nowtime) - 1] = '\0';
     strcpy(new_record.receipt_time, nowtime);
-    fprintf(pFile, "= %s", new_record.receipt_time);
+    fprintf(pFile, "= %s =\n", new_record.receipt_time);
 
     for (int i = 0; i < 5; i++) {
         fprintf(pFile, "[%d]: ", i + 1);
@@ -132,7 +133,7 @@ void write_record(char filename[], int lotto_n, int num) {
             fprintf(pFile, "-- -- -- -- -- -- -- \n");
         }
     }
-    fprintf(pFile, "======== csie@CGU =========\n");
+    fprintf(pFile, "========= csie@CGU =========\n");
 
     fclose(pFile);
     printf("已為您購買的 %d 組樂透組合輸出至 lotto[%05d].txt\n", lotto_n, new_record.receipt_id);
@@ -143,7 +144,7 @@ void write_record(char filename[], int lotto_n, int num) {
 
 int main()
 {
-    int lotto_n, num, price_n;
+    int lotto_n, price_n, num = 0;
     int price[3] = { 0 };
     char filename[20] = { 0 };
     srand(time(0));
@@ -151,7 +152,7 @@ int main()
     printf("歡迎光臨長庚樂透彩購買機台\n請問您要購買幾組樂透彩：");
     scanf("%d", &lotto_n);
 
-    if (lotto_n < 0 || lotto_n>5) {
+    if (lotto_n < 0 || lotto_n > 5) {
         printf("您輸入的數量有誤，請重新嘗試。\n");
         system("PAUSE");
         return 1;
