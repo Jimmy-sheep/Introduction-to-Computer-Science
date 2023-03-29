@@ -67,9 +67,9 @@ void check_record(int price[], int price_n) {
     FILE* pRecFile = fopen("record.bin", "rb");
 
     if (pRecFile == NULL)
-        printf("¥Ø«e¨S¦³±m¨éÁÊ¶R¬ö¿ı¡C\n");
+        printf("ç›®å‰æ²’æœ‰å½©åˆ¸è³¼è²·ç´€éŒ„ã€‚\n");
     else {
-        printf("¥H¤U¬°¤¤¼ú±m¨é¡G\n");
+        printf("ä»¥ä¸‹ç‚ºä¸­çå½©åˆ¸ï¼š\n");
 
         while (fread(&record, sizeof(lotto_record_t), 1, pRecFile)) {
             for (int i = 0; i < 5; i++) {
@@ -77,9 +77,9 @@ void check_record(int price[], int price_n) {
                     for (int p = 0; p < price_n; p++) {
                         if (record.lotto_set[i][j] == price[p]) {
                             win_flag = 1;
-                            printf("±m¨é No.%d\n", record.receipt_id);
-                            printf("°â¥X®É¶¡¡G%s", record.receipt_time);
-                            printf("¸¹½X¡G");
+                            printf("å½©åˆ¸ No.%d\n", record.receipt_id);
+                            printf("å”®å‡ºæ™‚é–“ï¼š%s", record.receipt_time);
+                            printf("è™Ÿç¢¼ï¼š");
                             for (int k = 0; k < 7; k++)
                                 printf("%02d ", record.lotto_set[i][k]);
                             printf("\n");
@@ -90,10 +90,10 @@ void check_record(int price[], int price_n) {
             }
         }
         if(win_flag == 0)
-            printf("¥»¦¸µL¤H¤¤¼ú¡C\n");
-    }
+            printf("æœ¬æ¬¡ç„¡äººä¸­çã€‚\n");
 
-    fclose(pRecFile);
+        fclose(pRecFile);
+    }
 }
 
 void write_record(char filename[], int lotto_n, int num) {
@@ -136,7 +136,7 @@ void write_record(char filename[], int lotto_n, int num) {
     fprintf(pFile, "========= csie@CGU =========\n");
 
     fclose(pFile);
-    printf("¤w¬°±zÁÊ¶Rªº %d ²Õ¼Ö³z²Õ¦X¿é¥X¦Ü lotto[%05d].txt\n", lotto_n, new_record.receipt_id);
+    printf("å·²ç‚ºæ‚¨è³¼è²·çš„ %d çµ„æ¨‚é€çµ„åˆè¼¸å‡ºè‡³ lotto[%05d].txt\n", lotto_n, new_record.receipt_id);
 
     fwrite(&new_record, sizeof(lotto_record_t), 1, pRecFile);
     fclose(pRecFile);
@@ -149,11 +149,11 @@ int main()
     char filename[20] = { 0 };
     srand(time(0));
 
-    printf("Åwªï¥úÁ{ªø©°¼Ö³z±mÁÊ¶R¾÷¥x\n½Ğ°İ±z­nÁÊ¶R´X²Õ¼Ö³z±m¡G");
+    printf("æ­¡è¿å…‰è‡¨é•·åºšæ¨‚é€å½©è³¼è²·æ©Ÿå°\nè«‹å•æ‚¨è¦è³¼è²·å¹¾çµ„æ¨‚é€å½©ï¼š");
     scanf("%d", &lotto_n);
 
     if (lotto_n < 0 || lotto_n > 5) {
-        printf("±z¿é¤Jªº¼Æ¶q¦³»~¡A½Ğ­«·s¹Á¸Õ¡C\n");
+        printf("æ‚¨è¼¸å…¥çš„æ•¸é‡æœ‰èª¤ï¼Œè«‹é‡æ–°å˜—è©¦ã€‚\n");
         system("PAUSE");
         return 1;
     }
@@ -172,7 +172,7 @@ int main()
         sprintf(filename, "lotto[%05d].txt", num + 1);
 
         if (lotto_n == 0) {
-            printf("½Ğ¿é¤J¤¤¼ú¸¹½X¡]³Ì¦h¤T­Ó¡^¡G");
+            printf("è«‹è¼¸å…¥ä¸­çè™Ÿç¢¼ï¼ˆæœ€å¤šä¸‰å€‹ï¼‰ï¼š");
             for (int i = 0; i < 3; i++) {
                 scanf("%d", &price[i]);
                 price_n = i + 1;
@@ -181,7 +181,7 @@ int main()
                     break;
             }
 
-            printf("¤¤¼ú¸¹½X¬°¡G");
+            printf("ä¸­çè™Ÿç¢¼ç‚ºï¼š");
             for (int i = 0; i < price_n; i++)
                 printf("%02d ", price[i]);
             printf("\n");
