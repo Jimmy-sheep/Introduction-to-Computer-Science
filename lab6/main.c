@@ -1,9 +1,8 @@
 #include <stdio.h>
 
 int multiplacation(int i, int j) {
-	if (i == 9 && j == 9) {
+	if (i == 9 && j == 9)
 		printf("%d*%d=%d\n", i, j, i * j);
-	}
 	else if (j == 9) {
 		printf("%d*%d=%d\n", i, j, i * j);
 		multiplacation(i + 1, 1);
