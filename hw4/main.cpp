@@ -9,11 +9,12 @@ public:
 	}
 
 	void run() {
+		printTicTacToe();
 		while (winFlag != 1) {
-			printTicTacToe();
 			setChess();
+			printf("\n");
+			printTicTacToe();
 			checkWin();
-			player = !player;
 		}
 	}
 private:
@@ -49,43 +50,46 @@ private:
 		printf("請輸入『1-9』的數字：");
 		cin >> chess;
 		if (chess < 1 || chess >9 || chesslist[chess-1] == 'o' || chesslist[chess-1] == 'x') {
-			printf("請重新輸入下一步\n\n");
+			printf("請重新輸入下一步\n");
 		}
 		else {
 			chesslist[chess - 1] = (player) ? 'x' : 'o';
 			round++;
+			player = !player;
 		}
 	}
 
 	void checkWin() {
 		for (int i = 0; i < 3; i++)			// 行
-			if (chesslist[i] == ((player) ? 'x' : 'o') && chesslist[i + 3] == ((player) ? 'x' : 'o') && chesslist[i + 6] == ((player) ? 'x' : 'o')) {
-				printf("==>%s Win", (player) ? "Player 1" : "Player 2");
+			if (chesslist[i] == ((!player) ? 'x' : 'o') && chesslist[i + 3] == ((!player) ? 'x' : 'o') && chesslist[i + 6] == ((!player) ? 'x' : 'o')) {
+				printf("==>%s Win", (!player) ? "Player 1" : "Player 2");
 				winFlag = 1;
 				return;
 			}
 		for (int i = 0; i < 9; i = i + 3)	// 列
-			if (chesslist[i] == ((player) ? 'x' : 'o') && chesslist[i + 1] == ((player) ? 'x' : 'o') && chesslist[i + 2] == ((player) ? 'x' : 'o')) {
-				printf("==>%s Win", (player) ? "Player 1" : "Player 2");
+			if (chesslist[i] == ((!player) ? 'x' : 'o') && chesslist[i + 1] == ((!player) ? 'x' : 'o') && chesslist[i + 2] == ((!player) ? 'x' : 'o')) {
+				printf("==>%s Win", (!player) ? "Player 1" : "Player 2");
 				winFlag = 1;
 				return;
 			}
 		// 斜線
-		if (chesslist[0] == ((player) ? 'x' : 'o') && chesslist[4] == ((player) ? 'x' : 'o') && chesslist[8] == ((player) ? 'x' : 'o')) {
-			printf("==>%s Win", (player) ? "Player 1" : "Player 2");
+		if (chesslist[0] == ((!player) ? 'x' : 'o') && chesslist[4] == ((!player) ? 'x' : 'o') && chesslist[8] == ((!player) ? 'x' : 'o')) {
+			printf("==>%s Win", (!player) ? "Player 1" : "Player 2");
 			winFlag = 1;
 			return;
 		}
-		if (chesslist[2] == ((player) ? 'x' : 'o') && chesslist[4] == ((player) ? 'x' : 'o') && chesslist[6] == ((player) ? 'x' : 'o')) {
-			printf("==>%s Win", (player) ? "Player 1" : "Player 2");
+		if (chesslist[2] == ((!player) ? 'x' : 'o') && chesslist[4] == ((!player) ? 'x' : 'o') && chesslist[6] == ((!player) ? 'x' : 'o')) {
+			printf("==>%s Win", (!player) ? "Player 1" : "Player 2");
 			winFlag = 1;
 			return;
 		}
+
 		if (round > 8) {
 			printf("==>Game draw");
 			winFlag = 1;
 			return;
 		}
+
 	}
 };
 
