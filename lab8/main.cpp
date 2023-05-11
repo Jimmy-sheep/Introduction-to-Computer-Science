@@ -39,17 +39,13 @@ public:
 		m_Gas_grade = Gas;
 	}
 	int fuel_up(int v, int gas) {
-		bool capFlag = false, gasFlag = false;
-
 		if (v > m_FueltankCapacity) {
 			cout << "Error: FueltankCapacity:" << m_FueltankCapacity << "but fuel up: " << v << endl;
-			capFlag = true;
 			return 0;
 		}
 
 		if (gas != m_Gas_grade) {
 			cout << "Error: Gas_grade:" << gas << "Correct Gas_grade: " << m_Gas_grade << endl;
-			gasFlag = true;
 			return 0;
 		}
 
