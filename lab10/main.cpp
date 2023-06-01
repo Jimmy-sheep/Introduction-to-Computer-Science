@@ -26,9 +26,9 @@ public:
 	ReadClass() {
 		in.open(__FILE__);
 
-		if (in.fail()) {
+		if (in.fail())
 			in.close();
-		}
+
 		while (getline(in, line)) {
 			if (line.find("class", 0) == 0) {
 				vec.push_back(line.substr(6, (int)line.find(" ", 6) - 6));
