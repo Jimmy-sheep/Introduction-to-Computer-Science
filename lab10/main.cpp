@@ -25,6 +25,7 @@ private:
 public:
 	ReadClass() {
 		in.open(__FILE__);
+
 		if (in.fail()) {
 			in.close();
 		}
@@ -34,6 +35,8 @@ public:
 				count++;
 			}
 		}
+
+		in.close();
 	}
 
 	void showClass() {
